@@ -4,11 +4,11 @@
     "slug": "GenTeach",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/background/bgImg.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/background/bgImg.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,10 +16,12 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/background/bgImg.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.GenTeach"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +33,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "41d787a2-41d9-4e64-b5d4-34e60b3349f5"
+      }
     }
   }
 }
