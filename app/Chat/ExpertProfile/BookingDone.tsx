@@ -13,6 +13,7 @@ const BookingDone = ({ navigation }) => {
    // Params
    const route = useRoute();
    const type = route.params?.type;
+   const name = route.params?.name;
    const selectedExpert = route.params?.selectedExpert;
    // 
    const [showFirstComponent, setShowFirstComponent] = useState(true);
@@ -51,10 +52,19 @@ const BookingDone = ({ navigation }) => {
                {showSecondComponent &&
                   (
                      <View style={styles.textContainer}>
-                        {type === 'booking'
-                           ? <Text style={styles.text}>Lịch khám của bạn đang được gửi đến {selectedExpert.role} {selectedExpert.name}, vui lòng đợi đến khi nhận được thông báo!</Text>
-                           : <Text style={styles.text}>Đặt hàng thành công!</Text>
+                        {type === 'booking' &&
+                           <Text style={styles.text}>
+                              Lịch khám của bạn đang được gửi đến {selectedExpert.role} {selectedExpert.name},
+                              vui lòng đợi đến khi nhận được thông báo!
+                           </Text>
                         }
+                        {type === 'buy' &&
+                           <Text style={styles.text}>Đặt hàng thành công!</Text>
+                        }
+                        {type === 'gift' &&
+                           <Text style={styles.text}>Món quà đang được gửi đến {name}!</Text>
+                        }
+
                         <Text style={{ marginTop: 10 }}>Cảm ơn bạn đã tin tưởng và sử dụng GenTeach!</Text>
                      </View>
                   )
@@ -65,13 +75,13 @@ const BookingDone = ({ navigation }) => {
                (
                   <View style={styles.returnBtnContainer}>
                      <TouchableOpacity style={styles.returnBtn} onPress={goBack}>
-                     <Text style={[styles.returnText, { color: theme.white }]}>Trở lại trang chủ</Text>
-                  </TouchableOpacity>
+                        <Text style={[styles.returnText, { color: theme.white }]}>Trở lại trang chủ</Text>
+                     </TouchableOpacity>
                   </View>
-         )
+               )
             }
 
-      </LinearGradient>
+         </LinearGradient>
       </SafeAreaView >
    )
 }

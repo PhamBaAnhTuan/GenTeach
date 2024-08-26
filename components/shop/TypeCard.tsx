@@ -13,7 +13,7 @@ const TypeCard = (props: Props) => {
    const {theme} = useTheme();
    return (
       <TouchableOpacity style={styles.container} onPress={props.onPress}>
-         <View style={styles.imgContainer}>
+         <View style={[styles.imgContainer, {backgroundColor: '#f5dcdf'}]}>
             <Image style={styles.icon} source={props.icon}/>
          </View>
          <Text style={[styles.text, {color: theme.text}]}>{props.typeName}</Text>
@@ -29,14 +29,13 @@ const styles = StyleSheet.create({
       width: 'auto',
       // borderWidth: 1,
       alignItems: 'center',
-      // marginHorizontal: 5,
-      // marginTop: 10
+      paddingHorizontal: 3
    },
 
    imgContainer:{
       height: 50,
       width: 50,
-      borderWidth: 1,
+      // borderWidth: 1,
       borderRadius: 10,
       borderColor: 'gray',
       alignItems: 'center',

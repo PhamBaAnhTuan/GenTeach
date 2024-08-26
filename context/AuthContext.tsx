@@ -2,7 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 // Firebase auth
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "@firebase/auth";
 import { auth, fireStore } from '../Firebase/FirebaseConfig';
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { useRouter, useNavigation } from "expo-router";
 import { ToastAndroid } from "react-native";
 // Route get params
@@ -13,7 +13,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
    // User
    const [user, setUser] = useState(null);
-   const [cart, setCart] = useState([]);
+   const [cart, setCart] = useState({});
+   const [cartEnd, setCartEnd] = useState([]);
    // const userId = user.uid;
    // Set cart data
    const storeCart = async () => {
@@ -29,15 +30,32 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
             rate: cart.rate,
             amount: 1,
          });
-         // setCart([]);
+         console.log('Saved cart: ', cart?.name);
+         setCart({});
       } catch (error) {
-         console.error(error);
+
       }
-      // console.log('Store cart success');
-      console.log(cart?.name);
-   }
+   };
+
+   useEffect(() => {
+      // Cart
+      const getCart = async () => {
+         try {
+            const ref = collection(fireStore, `user/${user.userId}/cart/`);
+            const query = await getDocs(ref);
+            const data = query.docs.map((doc) => doc.data());
+            setCartEnd(data);
+            // console.log('user id: ', user?.userId);
+            // console.log('Cart end: ', data);
+         } catch (error) {
+            // console.error("Error fetching cart data:", error);
+         }
+      };
+      getCart();
+   }, [])
+
    return (
-      <AuthContext.Provider value={{ user, setUser, cart, setCart, storeCart }} >
+      <AuthContext.Provider value={{ user, setUser, cart, setCart, storeCart, cartEnd }} >
          {children}
       </AuthContext.Provider>
    )

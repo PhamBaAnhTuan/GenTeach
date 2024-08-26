@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       height: 'auto',
       width: '100%',
       // borderWidth: 1,
-      paddingLeft: 5
+      // paddingLeft: 5
    },
    podcastName:{
       fontSize: 14,

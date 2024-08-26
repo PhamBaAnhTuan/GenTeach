@@ -30,11 +30,11 @@ const Study = ({ navigation }) => {
             start={{ x: 0, y: 0.5 }}
             end={{ x: 1, y: 1 }}
          >
-            
+
             <ScrollView showsVerticalScrollIndicator={false}>
 
                <View style={styles.header}>
-                  <View style={[styles.searchContainer, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchContainer, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
@@ -90,23 +90,9 @@ const Study = ({ navigation }) => {
                         {coursePopular.map((course: any, index: number) => (
                            <CourseCard
                               key={index}
-                              onPress={() => navigation.navigate('StudyDetail', {selectedCourse: coursePopular[index]})}
+                              onPress={() => navigation.navigate('StudyDetail', { selectedCourse: coursePopular[index] })}
                               img={{ uri: course.img }}
-                              authorImg={course.authorImg}
-                              author={course.author}
-                              name={course.name}
-                              price={course.price}
-                              isFree={course.isFree}
-                              field={course.field}
-                              rate={course.rate}
-                           />
-                        ))}
-                        {coursePopular.map((course: any, index: number) => (
-                           <CourseCard
-                              key={index}
-                              onPress={() => navigation.navigate('StudyDetail', {selectedCourse: coursePopular[index]})}
-                              img={{ uri: course.img }}
-                              authorImg={course.authorImg}
+                              authorImg={{ uri: course.authorImg }}
                               author={course.author}
                               name={course.name}
                               price={course.price}
@@ -121,8 +107,8 @@ const Study = ({ navigation }) => {
 
                <View style={styles.popularCourseContainer}>
                   <View style={styles.popularCourseTitleContainer}>
-                     <Text style={[styles.popularCourseTitle, { color: theme.text }]}>Khóa học chứng chỉ</Text>
-                     <TouchableOpacity style={styles.viewAllTextWrap} onPress={() => navigation.navigate('ShopViewAll', { selectedCourse: coursePopular, type: 'Course', title: 'Khóa học chứng chỉ' })}>
+                     <Text style={[styles.popularCourseTitle, { color: theme.text }]}>Tình yêu</Text>
+                     <TouchableOpacity style={styles.viewAllTextWrap} onPress={() => navigation.navigate('ShopViewAll', { selectedCourse: coursePopular, type: 'Course', title: 'Tình yêu' })}>
                         <Text style={[styles.viewAllText, { color: theme.text }]}>Xem thêm</Text>
                      </TouchableOpacity>
                   </View>
@@ -132,9 +118,9 @@ const Study = ({ navigation }) => {
                         {coursePopular.map((course: any, index: number) => (
                            <CourseCard
                               key={index}
-                              onPress={() => navigation.navigate('StudyDetail', {selectedCourse: coursePopular[index]})}
+                              onPress={() => navigation.navigate('StudyDetail', { selectedCourse: coursePopular[index] })}
                               img={{ uri: course.img }}
-                              authorImg={course.authorImg}
+                              authorImg={{ uri: course.authorImg }}
                               author={course.author}
                               name={course.name}
                               price={course.price}
@@ -143,12 +129,26 @@ const Study = ({ navigation }) => {
                               rate={course.rate}
                            />
                         ))}
+                     </ScrollView>
+                  </View>
+               </View>
+
+               <View style={styles.popularCourseContainer}>
+                  <View style={styles.popularCourseTitleContainer}>
+                     <Text style={[styles.popularCourseTitle, { color: theme.text }]}>Phát triển bản thân</Text>
+                     <TouchableOpacity style={styles.viewAllTextWrap} onPress={() => navigation.navigate('ShopViewAll', { selectedCourse: coursePopular, type: 'Course', title: 'Phát triển bản thân' })}>
+                        <Text style={[styles.viewAllText, { color: theme.text }]}>Xem thêm</Text>
+                     </TouchableOpacity>
+                  </View>
+
+                  <View style={styles.courseContainer}>
+                     <ScrollView horizontal={true}>
                         {coursePopular.map((course: any, index: number) => (
                            <CourseCard
                               key={index}
-                              onPress={() => navigation.navigate('StudyDetail', {selectedCourse: coursePopular[index]})}
+                              onPress={() => navigation.navigate('StudyDetail', { selectedCourse: coursePopular[index] })}
                               img={{ uri: course.img }}
-                              authorImg={course.authorImg}
+                              authorImg={{ uri: course.authorImg }}
                               author={course.author}
                               name={course.name}
                               price={course.price}

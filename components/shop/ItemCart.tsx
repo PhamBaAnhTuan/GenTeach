@@ -70,7 +70,7 @@ export default ItemCart
 const styles = StyleSheet.create({
    container: {
       height: 120,
-      width: '95%',
+      width: '97%',
       // borderWidth: 1,
       borderRadius: 5,
       flexDirection: 'row',
@@ -86,9 +86,9 @@ const styles = StyleSheet.create({
    },
 
    itemImg: {
-      height: '100%',
-      width: '30%',
-      resizeMode: 'contain',
+      height: 110,
+      width: 110,
+      resizeMode: 'cover',
    },
 
 

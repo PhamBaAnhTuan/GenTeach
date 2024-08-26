@@ -29,11 +29,11 @@ const Home = ({ navigation }) => {
   };
 
   // Handle follow
-  const [follow, setFollow] = useState('Follow');
+  const [follow, setFollow] = useState('Theo dõi');
   const setFL = () => {
-    follow === 'Follow'
-      ? (setFollow('Following'), ToastAndroid.show('Following', ToastAndroid.SHORT))
-      : (setFollow('Follow'), ToastAndroid.show('Unfollowed', ToastAndroid.SHORT));
+    follow === 'Theo dõi'
+      ? (setFollow('Đang theo dõi'), ToastAndroid.show('Đang theo dõi', ToastAndroid.SHORT))
+      : (setFollow('Theo dõi'), ToastAndroid.show('Bỏ theo dõi', ToastAndroid.SHORT));
   };
   // Handle heart
   const [heart, setHeart] = useState('hearto');

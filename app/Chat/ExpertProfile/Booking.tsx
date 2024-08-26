@@ -152,20 +152,6 @@ const Booking = ({ navigation }) => {
                      </View>
                   </View>
 
-                  <View style={styles.selectContainer}>
-                     <Text style={styles.label}>Số điện thoại liên hệ:</Text>
-                     <View style={styles.picker}>
-                        <TextInput placeholder='Số điện thoại' keyboardType='number-pad' />
-                     </View>
-                  </View>
-
-                  <View style={styles.selectContainer}>
-                     <Text style={styles.label}>Địa chỉ liên hệ:</Text>
-                     <View style={styles.picker}>
-                        <TextInput placeholder='Địa chỉ' keyboardType='default' />
-                     </View>
-                  </View>
-
                </View>
             </ScrollView>
 

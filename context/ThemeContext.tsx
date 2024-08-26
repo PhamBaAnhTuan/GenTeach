@@ -14,10 +14,13 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
       statusbarTheme : scheme === 'dark' ? 'black' : 'white',
       bgc: scheme === 'dark' ? '#111518' : '#fef0ff',
       text: scheme === 'dark' ? 'black' : 'black',
-      white: scheme === 'dark' ? 'white' : 'white',
+      white: 'white',
+      black: '#202020',
       gray: scheme === 'dark' ? 'gray' : 'lightgray',
-      green: scheme === 'dark' ? 'green' : 'green',
-      bgcCard: scheme === 'dark' ? '#0a3030' : '#0a3030',
+      green: 'green',
+      pink: '#f5dcdf',
+      blue: '#bbe3ff',
+      bgcCard: '#0a3030',
    }
 
    return (

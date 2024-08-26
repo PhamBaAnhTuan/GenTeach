@@ -2,6 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react';
 // Icons
 import { Ionicons, AntDesign, Entypo, MaterialIcons } from '@expo/vector-icons';
+// Theme
+import { useTheme } from '../../context/ThemeContext';
 
 interface Props {
    title: string,
@@ -14,60 +16,59 @@ interface Props {
    role: string,
 }
 const RoadMapCard = (props: Props, role: any) => {
+   const { theme } = useTheme();
    return (
-      <View>
-         <View style={[styles.container, props.role === 'StudyDetail' ? styles.studyDetail : styles.studyNow]}>
-            <Text style={styles.title}>{props.title}</Text>
+      <TouchableOpacity style={[styles.container, props.role === 'StudyDetail' ? styles.studyDetail : [styles.studyNow, {backgroundColor: theme.white}]]}>
+         <Text style={styles.title}>{props.title}</Text>
 
-            <Text style={styles.text}>{props.content}</Text>
+         <Text style={styles.text}>{props.content}</Text>
 
-            <View style={styles.wrapContainer}>
-               {props.watch ?
-                  (<TouchableOpacity style={styles.wrap}>
-                     <View style={styles.icon}>
-                        <MaterialIcons name="ondemand-video" size={24} color="gray" />
-                     </View>
-                     <View style={styles.iconTitle}>
-                        <Text>Xem</Text>
-                     </View>
-                  </TouchableOpacity>)
-                  : null}
+         <View style={styles.wrapContainer}>
+            {props.watch ?
+               (<TouchableOpacity style={styles.wrap}>
+                  <View style={styles.icon}>
+                     <MaterialIcons name="ondemand-video" size={24} color="gray" />
+                  </View>
+                  <View style={styles.iconTitle}>
+                     <Text>Xem</Text>
+                  </View>
+               </TouchableOpacity>)
+               : null}
 
-               {props.read ?
-                  (<TouchableOpacity style={styles.wrap}>
-                     <View style={styles.icon}>
-                        <AntDesign name="book" size={24} color="gray" />
-                     </View>
-                     <View style={styles.iconTitle}>
-                        <Text>Đọc</Text>
-                     </View>
-                  </TouchableOpacity>)
-                  : null}
+            {props.read ?
+               (<TouchableOpacity style={styles.wrap}>
+                  <View style={styles.icon}>
+                     <AntDesign name="book" size={24} color="gray" />
+                  </View>
+                  <View style={styles.iconTitle}>
+                     <Text>Đọc</Text>
+                  </View>
+               </TouchableOpacity>)
+               : null}
 
-               {props.listen ?
-                  (<TouchableOpacity style={styles.wrap}>
-                     <View style={styles.icon}>
-                        <Ionicons name="headset-outline" size={24} color="gray" />
-                     </View>
-                     <View style={styles.iconTitle}>
-                        <Text>Nghe</Text>
-                     </View>
-                  </TouchableOpacity>)
-                  : null}
+            {props.listen ?
+               (<TouchableOpacity style={styles.wrap}>
+                  <View style={styles.icon}>
+                     <Ionicons name="headset-outline" size={24} color="gray" />
+                  </View>
+                  <View style={styles.iconTitle}>
+                     <Text>Nghe</Text>
+                  </View>
+               </TouchableOpacity>)
+               : null}
 
-               {props.workShop ?
-                  (<TouchableOpacity style={styles.wrapNotice}>
-                     <View style={styles.icon}>
-                        <Entypo name="calendar" size={24} color="black" />
-                     </View>
-                     <View style={styles.iconTitle}>
-                        <Text>{props.notice}</Text>
-                     </View>
-                  </TouchableOpacity>)
-                  : null}
-            </View>
+            {props.workShop ?
+               (<TouchableOpacity style={styles.wrapNotice}>
+                  <View style={styles.icon}>
+                     <Entypo name="calendar" size={24} color="gray" />
+                  </View>
+                  <View style={styles.iconTitle}>
+                     <Text>{props.notice}</Text>
+                  </View>
+               </TouchableOpacity>)
+               : null}
          </View>
-      </View>
+      </TouchableOpacity>
    )
 }
 
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
 
    },
    studyNow: {
-      backgroundColor: 'white',
+      // backgroundColor: '#fef0ff',
       // borderWidth: 1,
       borderRadius: 5,
       paddingHorizontal: 5,

@@ -4,11 +4,11 @@
     "slug": "GenTeach",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/background/bgImg.png",
+    "icon": "./assets/background/Logo.jpg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/background/bgImg.png",
+      "image": "./assets/background/logoGenTeach2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
     "android": {
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/background/bgImg.png",
+        "foregroundImage": "./assets/background/logoGenTeach2.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.anonymous.GenTeach"

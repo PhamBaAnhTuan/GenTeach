@@ -51,8 +51,8 @@ const StudyDetail = ({ navigation }) => {
             <TouchableOpacity>
               <Text style={{ fontWeight: 'bold', color: 'black' }}>GenStudy</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Entypo name="menu" size={25} color="black" />
+            <TouchableOpacity onPress={() => navigation.navigate('Cart', {type: 'collection'})}>
+              <MaterialIcons name="collections-bookmark" size={24} color={theme.black} />
             </TouchableOpacity>
           </View>
 
@@ -70,13 +70,18 @@ const StudyDetail = ({ navigation }) => {
             <View style={styles.in4Wrap}>
               {selectedCourse.isFree
                 ?
-                (<View style={[styles.freeWrap, { backgroundColor: theme.green }]}>
-                  <Text style={[styles.freeText, { color: theme.white }]}>Free</Text>
-                </View>)
+                (
+                  <>
+                    <View style={[styles.freeWrap, { backgroundColor: theme.green }]}>
+                      <Text style={[styles.freeText, { color: theme.white }]}>Free</Text>
+                    </View>
+                    <Text style={[styles.text, { color: theme.black }]}>Học viên {selectedCourse.member}</Text>
+                  </>
+                )
                 :
                 (<>
                   <Text style={styles.price}>{selectedCourse.price} VND</Text>
-                  <Text style={[styles.text, { color: theme.black }]}>Học viên {selectedCourse.sold}</Text>
+                  <Text style={[styles.text, { color: theme.black }]}>Học viên {selectedCourse.member}</Text>
                 </>)
               }
             </View>
@@ -199,7 +204,7 @@ const StudyDetail = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.buyBtn} onPress={() => navigation.navigate('StudyNow', { selectedCourse: selectedCourse })}>
+          <TouchableOpacity style={styles.buyBtn} onPress={() => navigation.navigate('TopTabNavigator', { selectedCourse: selectedCourse })}>
             <Text style={styles.buyText}>Đăng ký học</Text>
           </TouchableOpacity>
         </View>

@@ -12,7 +12,7 @@ import ExpertCard from '@/components/chat/ExpertCard';
 
 const ChatViewAll = ({ navigation }) => {
    // Theme
-   const {theme} = useTheme();
+   const { theme } = useTheme();
    // Params
    const route = useRoute();
    const selectedExpert = route.params?.selectedExpert;
@@ -29,30 +29,30 @@ const ChatViewAll = ({ navigation }) => {
             start={{ x: 0, y: 0.5 }}
             end={{ x: 1, y: 1 }}
          >
-            <ScrollView>
-            <View style={styles.header}>
-               <TouchableOpacity onPress={() => navigation.goBack()} >
-                  <AntDesign name="arrowleft" size={25} color="black" />
-               </TouchableOpacity>
+            <ScrollView showsVerticalScrollIndicator={false}>
+               <View style={styles.header}>
+                  <TouchableOpacity onPress={() => navigation.goBack()} >
+                     <AntDesign name="arrowleft" size={25} color="black" />
+                  </TouchableOpacity>
 
-               <TouchableOpacity>
-                  <Entypo name="menu" size={25} color="black" />
-               </TouchableOpacity>
-            </View>
+                  <TouchableOpacity>
+                     <Entypo name="menu" size={25} color="black" />
+                  </TouchableOpacity>
+               </View>
 
                <View style={styles.searchContainer}>
-                  <View style={[styles.searchWrap, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchWrap, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
-   
+
                      <TextInput
                         style={styles.searchInput}
                         placeholder='Search'
                         value={search}
                         onChangeText={handleSearchChange}
                      />
-   
+
                      {search !== ''
                         ? (
                            <TouchableOpacity style={styles.xIcon} onPress={resetSearch}>
@@ -62,28 +62,18 @@ const ChatViewAll = ({ navigation }) => {
                         : null}
                   </View>
                </View>
-   
+
                <Text style={styles.titleText}>{type}</Text>
                <View style={styles.itemContainer}>
                   {selectedExpert.map((expert: any, index: number) => (
                      <ExpertCard
-                     key={index}
-                     onPress={() => navigation.navigate('ChatDetail', { selectedExpert: selectedExpert[index] })}
-                     img={{ uri: expert.img }}
-                     name={expert.name}
-                     isOnline={true}
-                     rate={5}
-                  />
-                  ))}
-                  {selectedExpert.map((expert: any, index: number) => (
-                     <ExpertCard
-                     key={index}
-                     onPress={() => navigation.navigate('ChatDetail', { selectedExpert: selectedExpert[index] })}
-                     img={{ uri: expert.img }}
-                     name={expert.name}
-                     isOnline={true}
-                     rate={5}
-                  />
+                        key={index}
+                        onPress={() => navigation.navigate('ChatDetail', { selectedExpert: selectedExpert[index] })}
+                        img={{ uri: expert.img }}
+                        name={expert.name}
+                        isOnline={true}
+                        rate={5}
+                     />
                   ))}
                </View>
             </ScrollView>

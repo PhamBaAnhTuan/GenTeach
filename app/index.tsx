@@ -27,10 +27,15 @@ import ShopViewAll from './Shop/ShopViewAll';
 import BuyNow from './Shop/BuyNow';
 // Home
 import Profile from './Home/Profile';
+import UpGradeAccountDetail from './Home/UpGradeAccount/UpGradeAccountDetail';
 // Study
 import StudyDetail from './Study/StudyDetail';
 import PodcastDetail from './Podcast/PodcastDetail';
-import StudyNow from './Study/StudyNow';
+import StudyNow from './Study/TopTabNavigator/Lesson';
+// Navigator
+import TopTabNavigator from './Study/TopTabNavigator/TopTabNavigator';
+import Lesson from './Study/TopTabNavigator/Lesson';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +43,7 @@ const MainLayout = () => {
   return (
     <Stack.Navigator initialRouteName='SignIn' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      <Stack.Screen name="TopTabNavigator" component={TopTabNavigator} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
 
@@ -56,9 +62,11 @@ const MainLayout = () => {
       <Stack.Screen name="Cart" component={Cart} />
 
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="UpGradeAccountDetail" component={UpGradeAccountDetail} />
 
       <Stack.Screen name="StudyDetail" component={StudyDetail} />
       <Stack.Screen name="StudyNow" component={StudyNow} />
+      <Stack.Screen name="Lesson" component={Lesson} />
 
       <Stack.Screen name="PodcastDetail" component={PodcastDetail} />
     </Stack.Navigator>

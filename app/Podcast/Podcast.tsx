@@ -13,7 +13,7 @@ const Podcast = ({navigation}) => {
    // Theme
    const { theme } = useTheme();
    // Data
-   const { podcastPopular, podcastSelfGrow, podcastLove } = useData();
+   const { podcastPopular, podcastSafeSexual, podcastSelfGrowth, podcastLove } = useData();
    // Handle search
    const [search, setSearch] = useState('');
    const handleSearchChange = (text: string) => setSearch(text);
@@ -33,7 +33,7 @@ const Podcast = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false}>
 
                <View style={styles.header}>
-                  <View style={[styles.searchContainer, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchContainer, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
@@ -90,9 +90,9 @@ const Podcast = ({navigation}) => {
 
                   <View style={styles.podcastContainer}>
                      <ScrollView horizontal={true}>
-                        {podcastSelfGrow.map((item: any, index: number) => (
+                        {podcastSafeSexual.map((item: any, index: number) => (
                            <PodcastCard
-                              onPress={() => navigation.navigate('PodcastDetail', {selectedPodcast: podcastSelfGrow[index]}) }
+                              onPress={() => navigation.navigate('PodcastDetail', {selectedPodcast: podcastSafeSexual[index]}) }
                               key={index}
                               img={{ uri: item.img }}
                               name={item.name}
@@ -136,9 +136,9 @@ const Podcast = ({navigation}) => {
 
                   <View style={styles.podcastContainer}>
                      <ScrollView horizontal={true}>
-                        {podcastLove.map((item: any, index: number) => (
+                        {podcastSelfGrowth.map((item: any, index: number) => (
                            <PodcastCard
-                              onPress={null}
+                              onPress={() => navigation.navigate('PodcastDetail', {selectedPodcast: podcastSelfGrowth[index]})}
                               key={index}
                               img={{ uri: item.img }}
                               name={item.name}

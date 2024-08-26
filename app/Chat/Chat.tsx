@@ -14,7 +14,7 @@ const Chat = ({ navigation }) => {
    // Theme
    const { theme } = useTheme();
    // Data
-   const { mentalHealthExpert, sexualHealthExpert, physicalHealthExpert } = useData();
+   const { mentalHealthExpert, sexualHealthExpert, physicalHealthExpert, dermatologistExpert } = useData();
    // Handle search
    const [search, setSearch] = useState('');
    const handleSearchChange = (text: string) => setSearch(text);
@@ -22,12 +22,12 @@ const Chat = ({ navigation }) => {
    // AI icon
    const [isVisible, setIsVisible] = useState(true);
    useEffect(() => {
-		const timer = setInterval(() => {
-			setIsVisible((prevState) => !prevState);
-		}, 5000);
-		// setIsVisible(isVisible);
-		return () => clearInterval(timer);
-	}, []);
+      const timer = setInterval(() => {
+         setIsVisible((prevState) => !prevState);
+      }, 5000);
+      // setIsVisible(isVisible);
+      return () => clearInterval(timer);
+   }, []);
    return (
       <SafeAreaView style={[styles.safeView, { backgroundColor: theme.bgc }]}>
 
@@ -40,7 +40,7 @@ const Chat = ({ navigation }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
 
                <View style={styles.header}>
-                  <View style={[styles.searchContainer, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchContainer, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
@@ -113,6 +113,30 @@ const Chat = ({ navigation }) => {
                <View style={styles.expertHealthyContainer}>
                   <View style={styles.titleContainer}>
                      <Text style={[styles.fieldTitle, { color: theme.text }]}>Chuyên gia da liễu</Text>
+                     <TouchableOpacity onPress={() => navigation.navigate('ChatViewAll', { selectedExpert: dermatologistExpert, type: 'Chuyên gia da liễu' })}>
+                        <Text style={[styles.viewAllText, { color: theme.text }]}>Xem thêm</Text>
+                     </TouchableOpacity>
+                  </View>
+
+                  <View style={styles.expertCardContainer}>
+                     <ScrollView horizontal={true}>
+                        {dermatologistExpert.map((expert: any, index: number) => (
+                           <ExpertCard
+                              key={index}
+                              onPress={() => navigation.navigate('ChatDetail', { selectedExpert: dermatologistExpert[index] })}
+                              img={{ uri: expert.img }}
+                              name={expert.name}
+                              isOnline={true}
+                              rate={5}
+                           />
+                        ))}
+                     </ScrollView>
+                  </View>
+               </View>
+
+               <View style={styles.expertHealthyContainer}>
+                  <View style={styles.titleContainer}>
+                     <Text style={[styles.fieldTitle, { color: theme.text }]}>Chuyên gia vật lý trị liệu</Text>
                      <TouchableOpacity onPress={() => navigation.navigate('ChatViewAll', { selectedExpert: physicalHealthExpert, type: 'Chuyên gia da liễu' })}>
                         <Text style={[styles.viewAllText, { color: theme.text }]}>Xem thêm</Text>
                      </TouchableOpacity>
@@ -136,11 +160,11 @@ const Chat = ({ navigation }) => {
 
             </ScrollView>
 
-            <TouchableOpacity style={styles.aiContainer} onPress={() => navigation.navigate('GPTChat')}>
-					<AI />
-					{isVisible && <Text style={styles.aiText}>Xin chào, GenTech có thể giúp gì cho bạn?</Text>}
+            <TouchableOpacity style={styles.aiContainer} onPress={() => navigation.navigate('ChatAI')}>
+               <AI />
+               {isVisible && <Text style={styles.aiText}>Xin chào, GenTech có thể giúp gì cho bạn?</Text>}
                {/* <Text style={styles.aiText}>Xin chào, GenTech có thể giúp gì cho bạn?</Text> */}
-				</TouchableOpacity>
+            </TouchableOpacity>
 
          </LinearGradient>
 
@@ -256,8 +280,8 @@ const styles = StyleSheet.create({
       bottom: 10,
       borderRadius: 50,
       // borderWidth: 1
-  },
-  aiText: {
+   },
+   aiText: {
       height: 'auto',
       width: 150,
       paddingHorizontal: 10,
@@ -273,5 +297,5 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'left',
       color: 'white'
-  },
+   },
 })

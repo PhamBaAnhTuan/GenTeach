@@ -1,4 +1,4 @@
-import { Dimensions, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Dimensions, FlatList, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 // Context
@@ -10,6 +10,9 @@ import { useRoute } from "@react-navigation/native";
 import { AntDesign, Ionicons, Feather, Entypo } from '@expo/vector-icons';
 // Components
 import ExpertCard from '../../components/chat/ExpertCard';
+import ChatBubble from '../../components/chat/ChatBot/ChatBubble';
+// Chat bot
+import axios from 'axios';
 
 const ChatDetail = ({ navigation }) => {
    // Theme
@@ -17,6 +20,63 @@ const ChatDetail = ({ navigation }) => {
    // Route
    const route = useRoute();
    const selectedExpert = route.params?.selectedExpert;
+   // Chat
+   const [chat, setChat] = useState([]);
+   const [input, setInput] = useState('');
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState('');
+
+   const apiKey = 'AIzaSyBUXx-ImDgnfjL6wtQBxjFWPyt8ERe2uWM';
+
+   const handleInput = async () => {
+      let updatedChat = [
+         ...chat,
+         {
+            role: 'user',
+            parts: [{ text: input }],
+         },
+      ];
+
+      setLoading(true);
+
+      try {
+         const response = await axios.post(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
+            {
+               contents: updatedChat,
+            }
+         );
+         // console.log('Gemini response: ' + JSON.stringify(response.data));
+
+         const modelResponse = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
+         if (modelResponse) {
+            const updatedChatWithModel = [
+               ...updatedChat,
+               {
+                  role: 'model',
+                  parts: [{ text: modelResponse }],
+               }
+            ];
+            setChat(updatedChatWithModel);
+            setInput('');
+         }
+         // console.log('bot: ', JSON.stringify(chat));
+      } catch (error) {
+         console.log('err calling Gemini: ', error);
+         console.log('err response: ', error.response);
+         setError('Try again');
+      } finally {
+         setLoading(false);
+      }
+   };
+
+   const renderItem = ({ item }) =>
+      <ChatBubble
+         role={item.role}
+         text={item.parts[0].text}
+      // onSpeech={() => handleSpeech(item.parts[0].text)}
+      />
 
    return (
       <SafeAreaView style={[styles.safeView, { backgroundColor: theme.bgc }]}>
@@ -52,6 +112,14 @@ const ChatDetail = ({ navigation }) => {
 
             </View>
 
+            <FlatList
+               // ref={flatListRef}
+               data={chat}
+               renderItem={renderItem}
+               keyExtractor={(item, index) => index.toString()}
+               contentContainerStyle={styles.chatContainer}
+            />
+
             <View style={styles.chatInputContainer} >
 
                <KeyboardAvoidingView behavior='padding' >
@@ -63,13 +131,18 @@ const ChatDetail = ({ navigation }) => {
                      <TextInput
                         style={styles.chatInput}
                         placeholder='Nhập tin nhắn'
-                     // value={mess}
-                     // onChangeText={handleMess}
+                        value={input}
+                        onChangeText={setInput}
                      />
 
-                     <TouchableOpacity>
-                        <Feather name="send" size={24} color="black" />
-                     </TouchableOpacity>
+                     {loading === true ? (<ActivityIndicator />)
+                        : (
+                           <TouchableOpacity onPress={handleInput}>
+                              <Feather name="send" size={24} color="black" />
+                           </TouchableOpacity>
+                        )
+                     }
+
                   </View>
                </KeyboardAvoidingView>
 
@@ -226,12 +299,24 @@ const styles = StyleSheet.create({
 
 
    // Chat container
+   // Chat ai
+   chatContainer: {
+      height: 'auto',
+      width: '100%',
+      // flex: 1,
+      // borderWidth: 1,
+      // justifyContent: 'flex-end',
+      paddingHorizontal: 5
+   },
+
+
+   // Chat container
    chatInputContainer: {
       height: 70,
       justifyContent: 'center',
       // borderWidth: 1
-  },
-  chatInputWrap: {
+   },
+   chatInputWrap: {
       height: 50,
       width: '95%',
       flexDirection: "row",
@@ -240,13 +325,13 @@ const styles = StyleSheet.create({
       justifyContent: "space-evenly",
       borderWidth: 1,
       borderRadius: 15,
-  },
-  chatInput: {
+   },
+   chatInput: {
       height: '100%',
       width: '75%',
       fontSize: 15,
       fontWeight: "400",
       // paddingHorizontal: 5,
       // borderWidth: 1
-  }
+   }
 })

@@ -18,6 +18,8 @@ const Shop = ({ navigation }) => {
    const { theme } = useTheme();
    // Data
    const { shopType, shopBCS, shopGel, shopBook } = useData();
+   const { cart } = useAuth();
+   
    // Handle search
    const [search, setSearch] = useState('');
    const handleSearchChange = (text: string) => setSearch(text);
@@ -33,7 +35,7 @@ const Shop = ({ navigation }) => {
          >
             <ScrollView showsVerticalScrollIndicator={false}>
                <View style={styles.header}>
-                  <View style={[styles.searchContainer, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchContainer, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
@@ -55,7 +57,7 @@ const Shop = ({ navigation }) => {
                   </View>
 
                   <View style={styles.headerRight}>
-                     <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                     <TouchableOpacity onPress={() => navigation.navigate('Cart', {type: 'cart'})}>
                         <Feather name="shopping-cart" size={22} color="black" />
                      </TouchableOpacity>
 
@@ -110,14 +112,6 @@ const Shop = ({ navigation }) => {
 
                   <ScrollView horizontal={true}>
                      <View style={styles.categoryWrap}>
-                        {shopType.map((type: any, index: number) => (
-                           <TypeCard
-                              key={index}
-                              icon={{ uri: type.img }}
-                              typeName={type.name}
-                              onPress={null}
-                           />
-                        ))}
                         {shopType.map((type: any, index: number) => (
                            <TypeCard
                               key={index}

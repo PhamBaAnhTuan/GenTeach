@@ -20,7 +20,7 @@ const ShopDetail = ({ navigation }) => {
   // Theme
   const { theme } = useTheme();
   // Auth
-  const {cart, setCart, storeCart, user} = useAuth();
+  const { cart, setCart, storeCart, user } = useAuth();
   // Route get params
   const route = useRoute();
   const selectedItem = route.params?.selectedItem;
@@ -34,9 +34,9 @@ const ShopDetail = ({ navigation }) => {
   // Handle add to cart
   const addToCart = () => {
     setCart(selectedItem);
-    // storeCart();
-    // console.log(cart?.name);
-    // console.log(user.userName);
+    storeCart();
+    console.log(cart?.name);
+    console.log(user.userName);
     ToastAndroid.show('Đã thêm vào Giỏ hàng', ToastAndroid.SHORT);
   }
   return (
@@ -55,7 +55,7 @@ const ShopDetail = ({ navigation }) => {
             <TouchableOpacity>
               <Text style={{ fontWeight: 'bold', color: 'black' }}>GenShop</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart', {type: 'cart'})}>
               <Feather name="shopping-cart" size={22} color="black" />
             </TouchableOpacity>
           </View>
@@ -112,8 +112,8 @@ const ShopDetail = ({ navigation }) => {
               <Text style={[styles.voucherText, { color: theme.black }]} >Miễn phí vận chuyển</Text>
 
               <View style={styles.voucherWrap}>
-                <View style={[styles.freeShipWrap, { borderColor: theme.green }]}>
-                  <Text style={{ fontSize: 11, fontWeight: 'bold', color: theme.green }}>Free ship</Text>
+                <View style={[styles.freeShipWrap, { borderColor: 'green' }]}>
+                  <Text style={{ fontSize: 11, fontWeight: 'bold', color: 'green' }}>Free ship</Text>
                 </View>
                 <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.black} />
               </View>
@@ -149,16 +149,19 @@ const ShopDetail = ({ navigation }) => {
 
         <View style={styles.buyBtnContainer}>
           <View style={styles.leftContainer}>
-            <TouchableOpacity style={[styles.chatIcon, { borderColor: theme.white }]}>
-              <Ionicons name="chatbox-outline" size={22} color={theme.white} />
+            <TouchableOpacity
+              style={[styles.chatIcon, { borderColor: theme.white }]}
+              onPress={() => navigation.navigate('BuyNow', { selectedItem: selectedItem, type: 'gift' })}
+            >
+              <Ionicons name="gift" size={22} color={theme.white} />
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.cartIcon, { borderColor: theme.white }]} onPress={addToCart}>
-              <FontAwesome name="cart-plus" size={24} color={theme.white} />
+              <FontAwesome name="cart-plus" size={22} color={theme.white} />
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.buyBtn} onPress={() => navigation.navigate('BuyNow', { selectedItem: selectedItem })}>
+          <TouchableOpacity style={styles.buyBtn} onPress={() => navigation.navigate('BuyNow', { selectedItem: selectedItem, type: 'buy' })}>
             <Text style={styles.buyText}>Mua ngay</Text>
           </TouchableOpacity>
         </View>

@@ -13,37 +13,37 @@ const Course = () => {
          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container1}>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
-               </TouchableOpacity>
-            </View>
-
-            <View style={styles.container1}>
-               <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
-               </TouchableOpacity>
-               <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
-               </TouchableOpacity>
-               <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
             </View>
 
             <View style={styles.container1}>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
                <TouchableOpacity style={styles.wrap1}>
-                  <Image style={styles.img1} source={require('../../../assets/images/adaptive-icon.png')} />
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+               </TouchableOpacity>
+            </View>
+
+            <View style={styles.container1}>
+               <TouchableOpacity style={styles.wrap1}>
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+               </TouchableOpacity>
+               <TouchableOpacity style={styles.wrap1}>
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+               </TouchableOpacity>
+               <TouchableOpacity style={styles.wrap1}>
+                  <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
                </TouchableOpacity>
             </View>
          </ScrollView>
@@ -76,6 +76,6 @@ const styles = StyleSheet.create({
    img1: {
       height: '100%',
       width: '100%',
-      resizeMode: 'cover'
+      resizeMode: 'contain'
    }
 })

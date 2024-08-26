@@ -117,12 +117,12 @@ const SignIn = ({ navigation }) => {
             <Text style={[styles.title, { color: theme.text }]}>Mật khẩu</Text>
 
             <View style={[styles.passInput, { backgroundColor: theme.gray }]}>
-              <TextInput style={{ height: 50, width: 270, color: theme.text, backgroundColor: theme.gray }}
+              <TextInput style={{ height: 50, width: '85%', color: theme.text, backgroundColor: theme.gray }}
                 secureTextEntry={hide}
                 onChangeText={handlePasswordChange}
               />
 
-              <TouchableOpacity style={{ width: 50, alignItems: 'center' }} onPress={hidePass}>
+              <TouchableOpacity style={{ width: '15%', alignItems: 'center', justifyContent: 'center' }} onPress={hidePass}>
                 <Feather name={eye} size={24} color={theme.text} />
               </TouchableOpacity>
             </View>
@@ -134,11 +134,11 @@ const SignIn = ({ navigation }) => {
 
           <TouchableOpacity style={styles.rmbWrapLeft} onPress={handleRemember}>
             <Fontisto name={remember} size={20} color={theme.text} />
-            <Text style={{ fontSize: 12, paddingLeft: 5, color: theme.text }}>Remember me</Text>
+            <Text style={{ fontSize: 12, paddingLeft: 5, color: theme.text }}>Nhớ mật khẩu</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity >
-            <Text style={{ color: 'tomato', fontSize: 12 }}>Forgot password?</Text>
+          <TouchableOpacity onPress={() => Alert.alert('Quên mật khẩu?', 'Truy cập GenTeach.edu.vn để được hỗ trợ!')} >
+            <Text style={{ color: 'tomato', fontSize: 12 }}>Quên mật khẩu?</Text>
           </TouchableOpacity>
 
         </View>
@@ -150,7 +150,7 @@ const SignIn = ({ navigation }) => {
             )
             : (
               <TouchableOpacity style={styles.signInBtn} onPress={signInMethod}>
-                <Text style={[styles.signInText, { color: theme.white }]}>Sign In</Text>
+                <Text style={[styles.signInText, { color: theme.white }]}>Đăng nhập</Text>
               </TouchableOpacity>
             )
           }
@@ -158,7 +158,7 @@ const SignIn = ({ navigation }) => {
 
         <View style={styles.orContainer}>
           <View style={{ height: 0.5, width: '35%', backgroundColor: theme.text }}></View>
-          <Text style={{ color: theme.text }}>Or</Text>
+          <Text style={{ color: theme.text }}>Hoặc</Text>
           <View style={{ height: 0.5, width: '35%', backgroundColor: theme.text }}></View>
         </View>
 
@@ -177,9 +177,9 @@ const SignIn = ({ navigation }) => {
         </View>
 
         <View style={styles.signUpText}>
-          <Text style={{ fontWeight: 'bold', color: theme.text }}>Not a member? </Text>
+          <Text style={{ fontWeight: 'bold', color: theme.text }}>Chưa có tài khoản? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={{ color: 'plum', fontWeight: 'bold' }}>Sign Up</Text>
+            <Text style={{ color: 'plum', fontWeight: 'bold' }}>Đăng ký</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -231,12 +231,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     paddingLeft: 5,
-    paddingBottom: 2
+    paddingBottom: 2,
     // borderWidth: 1,
   },
   textInput: {
     height: 50,
-    width: 330,
+    minWidth: '95%',
     // borderWidth: 1,
     borderRadius: 10,
     paddingLeft: 10,
@@ -245,10 +245,10 @@ const styles = StyleSheet.create({
   passInput: {
     flexDirection: 'row',
     height: 50,
-    width: 330,
+    width: '95%',
     borderRadius: 10,
     paddingLeft: 10,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -256,8 +256,8 @@ const styles = StyleSheet.create({
   },
 
   rememberContainer: {
-    height: '3%',
-    width: 330,
+    height: 30,
+    width: '85%',
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center',
@@ -285,10 +285,9 @@ const styles = StyleSheet.create({
 
   signInBtn: {
     height: 50,
-    width: '95%',
+    width: '85%',
     backgroundColor: 'plum',
     alignItems: 'center',
-    alignSelf: 'center',
     justifyContent: 'center',
     borderRadius: 10,
     // borderWidth: 0.5,

@@ -8,14 +8,16 @@ import ChatBubble from '../../../components/chat/ChatBot/ChatBubble';
 // Chat bot
 import axios from 'axios';
 // import { speak, isSpeakingAsync, stop } from 'expo-speech';
+// import dotenv from 'dotenv';
 
 const ChatAI = ({ navigation }) => {
 
    const [chat, setChat] = useState([]);
    const [input, setInput] = useState('');
    const [loading, setLoading] = useState(false);
+   const [error, setError] = useState('');
 
-   const API_KEY = 'AIzaSyBUXx-ImDgnfjL6wtQBxjFWPyt8ERe2uWM';
+   const apiKey = 'AIzaSyBUXx-ImDgnfjL6wtQBxjFWPyt8ERe2uWM';
 
    const handleInput = async () => {
       let updatedChat = [
@@ -30,12 +32,12 @@ const ChatAI = ({ navigation }) => {
 
       try {
          const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
             {
                contents: updatedChat,
             }
          );
-         console.log('Gemini response: ' + JSON.stringify(response.data));
+         // console.log('Gemini response: ' + JSON.stringify(response.data));
 
          const modelResponse = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
@@ -90,7 +92,7 @@ const ChatAI = ({ navigation }) => {
             </View>
 
             <FlatList
-               ref={flatListRef}
+               // ref={flatListRef}
                data={chat}
                renderItem={renderItem}
                keyExtractor={(item, index) => index.toString()}
@@ -98,28 +100,31 @@ const ChatAI = ({ navigation }) => {
             />
 
             <View style={styles.chatInputContainer} >
-               <KeyboardAvoidingView behavior='padding'>
 
+               <KeyboardAvoidingView behavior='padding' >
                   <View style={styles.chatInputWrap}>
-                     <TouchableOpacity style={{ marginLeft: 10 }} >
+                     <TouchableOpacity>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>
 
                      <TextInput
                         style={styles.chatInput}
-                        placeholder='Nhập vào'
+                        placeholder='Nhập tin nhắn'
                         value={input}
                         onChangeText={setInput}
                      />
 
-                     {loading === true ? (<ActivityIndicator style={{ marginRight: 15 }} />)
-                        : (<TouchableOpacity style={{ marginRight: 10 }} onPress={handleInput} >
-                           <Feather name="send" size={24} color="black" />
-                        </TouchableOpacity>)
+                     {loading === true ? (<ActivityIndicator />)
+                        : (
+                           <TouchableOpacity onPress={handleInput}>
+                              <Feather name="send" size={24} color="black" />
+                           </TouchableOpacity>
+                        )
                      }
-                  </View>
 
+                  </View>
                </KeyboardAvoidingView>
+
             </View>
          </LinearGradient>
 
@@ -156,36 +161,34 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
    },
 
-   // chat input
+   // Chat container
    chatInputContainer: {
       height: 70,
-      width: '90%',
       justifyContent: 'center',
-      alignSelf: 'center',
       // borderWidth: 1
    },
    chatInputWrap: {
-      height: 55,
-      width: '100%',
+      height: 50,
+      width: '95%',
       flexDirection: "row",
       alignItems: "center",
       alignSelf: 'center',
       justifyContent: "space-evenly",
       borderWidth: 1,
-      borderRadius: 30,
-      // marginBottom: 10
+      borderRadius: 15,
    },
    chatInput: {
-      // placeholderTextColor
+      height: '100%',
+      width: '75%',
       fontSize: 15,
       fontWeight: "400",
-      paddingHorizontal: 5,
-      width: 240,
+      // paddingHorizontal: 5,
+      // borderWidth: 1
    },
 
    // Chat ai
    chatContainer: {
-      height: 1000,
+      height: 'auto',
       width: '100%',
       // flex: 1,
       // borderWidth: 1,

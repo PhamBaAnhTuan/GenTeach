@@ -19,7 +19,7 @@ const ItemCard = (props: Props) => {
    // Theme
    const { theme } = useTheme();
    return (
-      <TouchableOpacity style={[styles.container, { backgroundColor: theme.bgcCard }]} onPress={props.onPress}>
+      <TouchableOpacity style={[styles.container, { backgroundColor: theme.black }]} onPress={props.onPress}>
          <Image style={styles.itemImg} source={props.img} />
 
          <View style={styles.in4Container}>
@@ -31,7 +31,7 @@ const ItemCard = (props: Props) => {
                   <Text style={{ fontSize: 11, fontWeight: 'bold', color: theme.white }}>{props.discount}% off</Text>
                </View>
                {props.freeShip ?
-                  (<View style={[styles.freeShipWrap, { borderColor: 'green' }]}>
+                  (<View style={[styles.freeShipWrap, { borderColor: 'lightgreen' }]}>
                      <Text style={{ fontSize: 10, fontWeight: 'bold', color: 'lightgreen' }}>Free ship</Text>
                   </View>)
 

@@ -44,7 +44,7 @@ const ShopViewAll = ({ navigation }) => {
                </View>
 
                <View style={styles.searchContainer}>
-                  <View style={[styles.searchWrap, { backgroundColor: theme.gray }]}>
+                  <View style={[styles.searchWrap, { backgroundColor: theme.pink }]}>
                      <TouchableOpacity style={styles.icon}>
                         <Feather name="camera" size={24} color="black" />
                      </TouchableOpacity>

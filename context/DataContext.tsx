@@ -12,35 +12,26 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
    // Chat
    const [mentalHealthExpert, setMentalHealthExpert] = useState([]);
    const [sexualHealthExpert, setSexualHealthExpert] = useState([]);
+   const [dermatologistExpert, setDermatologistExpert] = useState([]);
    const [physicalHealthExpert, setPhysicalHealthExpert] = useState([]);
    // Shop
    const [shopType, setShopType] = useState([]);
    const [shopBCS, setShopBCS] = useState([]);
    const [shopGel, setShopGel] = useState([]);
    const [shopBook, setShopBook] = useState([]);
+   // Cart
+   const [cart, setCart] = useState([]);
    // Study
    const [courseTopic, setCourseTopic] = useState([]);
    const [coursePopular, setCoursePopular] = useState([]);
    // Podcast
    const [podcastPopular, setPodcastPopular] = useState([]);
-   const [podcastSelfGrow, setPodcastSelfGrow] = useState([]);
+   const [podcastSafeSexual, setPodcastSafeSexual] = useState([]);
+   const [podcastSelfGrowth, setPodcastSelfGrowth] = useState([]);
    const [podcastLove, setPodcastLove] = useState([]);
 
    useEffect(() => {
       // Chat
-      const getPhysicalHealthExpert = async () => {
-         try {
-            const ref = collection(fireStore, "chat/expert/physicalHealth/");
-            const query = await getDocs(ref);
-            const data = query.docs.map((doc) => doc.data());
-            setPhysicalHealthExpert(data);
-            // console.log(data);
-         } catch (error) {
-            console.error("Error fetching Expert title data:", error);
-         }
-      };
-      getPhysicalHealthExpert();
-
       const getMentalHealthExpert = async () => {
          try {
             const ref = collection(fireStore, "chat/expert/mentalHealth/");
@@ -66,6 +57,33 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
          }
       };
       getSexualHealthExpert();
+
+      const getDermatologistExpert = async () => {
+         try {
+            const ref = collection(fireStore, "chat/expert/dermatologist/");
+            const query = await getDocs(ref);
+            const data = query.docs.map((doc) => doc.data());
+            setDermatologistExpert(data);
+            // console.log(data);
+         } catch (error) {
+            console.error("Error fetching Sexual dermatologist expert data:", error);
+         }
+      };
+      getDermatologistExpert();
+
+      const getPhysicalHealthExpert = async () => {
+         try {
+            const ref = collection(fireStore, "chat/expert/physicalHealth/");
+            const query = await getDocs(ref);
+            const data = query.docs.map((doc) => doc.data());
+            setPhysicalHealthExpert(data);
+            // console.log(data);
+         } catch (error) {
+            console.error("Error fetching Expert title data:", error);
+         }
+      };
+      getPhysicalHealthExpert();
+
 
       // Shop
       const getShopType = async () => {
@@ -119,6 +137,7 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
          }
       };
       getShopBook();
+      
 
       // Study
       const getCourseTopic = async () => {
@@ -152,7 +171,7 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
       // Podcast
       const getPodcastPopular = async () => {
          try {
-            const ref = collection(fireStore, "podcast/");
+            const ref = collection(fireStore, "podcast/podcastPopular/podcastPopular/");
             const query = await getDocs(ref);
             const data = query.docs.map((doc) => doc.data());
             setPodcastPopular(data);
@@ -163,24 +182,24 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
       };
       getPodcastPopular();
 
-      // Podcast self grow
-      const getPodcastSelfGrow = async () => {
+      // Podcast Love
+      const getPodcastSafeSexual = async () => {
          try {
-            const ref = collection(fireStore, "podcast2/");
+            const ref = collection(fireStore, "podcast/podcastSafeSexual/podcastSafeSexual/");
             const query = await getDocs(ref);
             const data = query.docs.map((doc) => doc.data());
-            setPodcastSelfGrow(data);
+            setPodcastSafeSexual(data);
             // console.log(data);
          } catch (error) {
-            console.error("Error fetching podcast self grow data:", error);
+            console.error("Error fetching podcast safe sexual data:", error);
          }
       };
-      getPodcastSelfGrow();
+      getPodcastSafeSexual();
 
-      // Podcast self grow
+      // Podcast Love
       const getPodcastLove = async () => {
          try {
-            const ref = collection(fireStore, "podcast3/");
+            const ref = collection(fireStore, "podcast/podcastLove/podcastLove/");
             const query = await getDocs(ref);
             const data = query.docs.map((doc) => doc.data());
             setPodcastLove(data);
@@ -190,10 +209,26 @@ export const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
          }
       };
       getPodcastLove();
+
+      // Podcast self grow
+      const getPodcastSelfGrowth = async () => {
+         try {
+            const ref = collection(fireStore, "podcast/podcastSelfGrowth/podcastSelfGrowth/");
+            const query = await getDocs(ref);
+            const data = query.docs.map((doc) => doc.data());
+            setPodcastSelfGrowth(data);
+            // console.log(data);
+         } catch (error) {
+            console.error("Error fetching podcast self growth data:", error);
+         }
+      };
+      getPodcastSelfGrowth();
+
+      
    }, [])
 
    return (
-      <DataContext.Provider value={{physicalHealthExpert, mentalHealthExpert, sexualHealthExpert, shopType, shopBCS, shopGel, shopBook, courseTopic, coursePopular, podcastPopular, podcastSelfGrow, podcastLove}}>
+      <DataContext.Provider value={{physicalHealthExpert, mentalHealthExpert, sexualHealthExpert, dermatologistExpert, shopType, shopBCS, shopGel, shopBook, courseTopic, coursePopular, podcastPopular, podcastSafeSexual, podcastSelfGrowth, podcastLove}}>
          {children}
       </DataContext.Provider>
    )

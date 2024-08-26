@@ -21,7 +21,7 @@ interface Props {
 const CourseCard = (props: Props) => {
    const { theme } = useTheme();
    return (
-      <TouchableOpacity style={[styles.container, { backgroundColor: theme.bgcCard }]} onPress={props.onPress}>
+      <TouchableOpacity style={[styles.container, { backgroundColor: theme.black }]} onPress={props.onPress}>
          <Image style={styles.courseImg} source={props.img} />
 
          <View style={styles.authorContainer}>

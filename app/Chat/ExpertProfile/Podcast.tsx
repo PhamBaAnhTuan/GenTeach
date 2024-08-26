@@ -1,28 +1,54 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const Podcast = () => {
-  return (
-   <LinearGradient
+   return (
+      <LinearGradient
          colors={["plum", "#66ffff"]}
          style={styles.gradient}
          start={{ x: 0, y: 0.5 }}
          end={{ x: 1, y: 1 }}
       >
          <View style={styles.container1}>
-            <TouchableOpacity style={styles.wrap1}></TouchableOpacity>
-            <TouchableOpacity style={styles.wrap1}></TouchableOpacity>
-            <TouchableOpacity style={styles.wrap1}></TouchableOpacity>
+            <TouchableOpacity style={styles.wrap1}>
+               <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.wrap1}>
+               <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.wrap1}>
+               <Image style={styles.img1} source={require('../../../assets/background/logoGenTeach2.png')} />
+            </TouchableOpacity>
          </View>
       </LinearGradient>
-  )
+   )
 }
 
 export default Podcast
 
 const styles = StyleSheet.create({
-   gradient:{
+   gradient: {
       flex: 1
    },
+
+   container1: {
+      height: 120,
+      width: '100%',
+      // borderWidth: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-evenly'
+   },
+
+   wrap1: {
+      height: '100%',
+      width: '33%',
+      borderWidth: 0.2
+   },
+   img1: {
+      height: '100%',
+      width: '100%',
+      resizeMode: 'contain'
+   }
 })

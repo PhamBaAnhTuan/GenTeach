@@ -12,7 +12,7 @@ interface Props{
 const TopicCard = (props: Props) => {
    const { theme } = useTheme();
    return (
-      <TouchableOpacity style={styles.container} onPress={props.onPress}>
+      <TouchableOpacity style={[styles.container, {backgroundColor: theme.blue}]} onPress={props.onPress}>
          <Text style={styles.topicTitle}>{props.topicTitle}</Text>
       </TouchableOpacity>
    )
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 15,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#bbe3ff',
+      // backgroundColor: '#bbe3ff',
       marginHorizontal: 5
    },
 

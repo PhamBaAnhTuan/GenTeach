@@ -7,10 +7,11 @@ import {
 	Image,
 	TouchableOpacity,
 	Button,
-   StyleSheet,
-   Dimensions,
+	StyleSheet,
+	Dimensions,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Slider from '@react-native-community/slider';
 // Route get params
 import { useRoute } from "@react-navigation/native";
 // Icons
@@ -23,7 +24,7 @@ import {
 	Feather
 } from "@expo/vector-icons";
 
-const PodcastDetail = ({navigation}) => {
+const PodcastDetail = ({ navigation }) => {
 	const route = useRoute();
 	const selectedPodcast = route.params?.selectedPodcast;
 
@@ -45,6 +46,8 @@ const PodcastDetail = ({navigation}) => {
 		);
 	};
 
+	// Slider
+	const [value, setValue] = useState(0);
 
 	return (
 		<SafeAreaView style={styles.safeView}>
@@ -60,7 +63,7 @@ const PodcastDetail = ({navigation}) => {
 						<AntDesign name="arrowleft" size={25} color="black" />
 					</TouchableOpacity>
 					<TouchableOpacity>
-						<Text style={{fontWeight: 'bold'}}>Podcast</Text>
+						<Text style={{ fontWeight: 'bold' }}>Podcast</Text>
 					</TouchableOpacity>
 					<TouchableOpacity>
 						<Entypo name="menu" size={25} color="black" />
@@ -70,7 +73,7 @@ const PodcastDetail = ({navigation}) => {
 
 				<View style={{ height: "50%", justifyContent: 'center' }}>
 					<Image
-						source={{uri: selectedPodcast.img}}
+						source={{ uri: selectedPodcast.img }}
 						resizeMode="cover"
 						style={styles.podcastImg}
 					/>
@@ -99,13 +102,18 @@ const PodcastDetail = ({navigation}) => {
 						<Text style={{ fontSize: 13 }}>0:00</Text>
 					</View>
 
-					<View
-						style={{
-							height: 1,
-							width: '75%',
-							backgroundColor: "black",
-						}}
-					></View>
+					<Slider
+						style={styles.slider}
+						minimumValue={0}
+						maximumValue={100}
+						step={1}
+						value={value}
+						onValueChange={setValue}
+						minimumTrackTintColor="pink"
+						maximumTrackTintColor="black"
+						thumbTintColor="plum"
+					/>
+
 					<View>
 						<Text style={{ fontSize: 13 }}>{selectedPodcast.time}</Text>
 					</View>
@@ -153,72 +161,77 @@ const PodcastDetail = ({navigation}) => {
 export default PodcastDetail;
 
 const styles = StyleSheet.create({
-   safeView: {
-      flex: 1,
-      height: Dimensions.get('screen').height,
-      width: Dimensions.get('screen').width,
-      // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 30,
-      // borderWidth: 1
-   },
+	safeView: {
+		flex: 1,
+		height: Dimensions.get('screen').height,
+		width: Dimensions.get('screen').width,
+		// paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 30,
+		justifyContent: 'space-between'
+	},
 
 
-   // Podcast Detail
-   navbarTop:{
-      height: '8%',
-      width: '100%',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent:'space-between',
-      paddingHorizontal: 15,
-      // borderWidth: 1,
-  },
-  podcastImg:{
-      height: 330,
-      width: 330,
-      alignSelf: 'center',
-      justifyContent: 'center',
-      // flex: 1,
-      borderRadius: 15
-  },
-  // Podcast name, author
-  titleContainer:{
-      height: "15%",
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      flexDirection: 'row',
-      // borderWidth: 1
-  },
-  podcastTitle:{
-      // width: 230,
-      fontSize: 17,
-      fontWeight: 'bold',
-      alignSelf: 'center',
-      textAlign: 'center',
-      // borderWidth: 1
-  },
-  podcastAuth:{
-      fontSize: 14,        
-      alignSelf: 'center',
-      textAlign: 'center',
-  },
+	// Podcast Detail
+	navbarTop: {
+		height: 60,
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		paddingHorizontal: 15,
+		// borderWidth: 1,
+	},
+	podcastImg: {
+		height: 330,
+		width: 330,
+		alignSelf: 'center',
+		justifyContent: 'center',
+		// flex: 1,
+		borderRadius: 15
+	},
+	// Podcast name, author
+	titleContainer: {
+		height: 100,
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		flexDirection: 'row',
+		// borderWidth: 1
+	},
+	podcastTitle: {
+		// width: 230,
+		fontSize: 17,
+		fontWeight: 'bold',
+		alignSelf: 'center',
+		textAlign: 'center',
+		// borderWidth: 1
+	},
+	podcastAuth: {
+		fontSize: 14,
+		alignSelf: 'center',
+		textAlign: 'center',
+	},
 
-  // Timeline
-  timeLine:{
-      height: '5%',
-      width: '100%',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent:'space-between',
-      paddingHorizontal: 20,
-      // borderWidth: 1,
-  },
-  // Navbar Controller
-  navbarControl:{
-      height: '15%',
-      width: '100%',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-evenly',
-      // borderWidth: 1
-  }
+	// Timeline
+	timeLine: {
+		height: 50,
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		paddingHorizontal: 10,
+		// borderWidth: 1,
+	},
+	// Slider
+	slider: {
+		width: '75%',
+		height: 40,
+	},
+	// Navbar Controller
+	navbarControl: {
+		height: 120,
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-evenly',
+		// borderWidth: 1
+	}
 })

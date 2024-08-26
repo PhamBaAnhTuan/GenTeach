@@ -24,6 +24,7 @@ const BuyNow = ({ navigation }) => {
    const { theme } = useTheme();
    // Route get params
    const route = useRoute();
+   const type = route.params?.type;
    const selectedItem = route.params?.selectedItem;
    // Handle amount
    const [amount, setAmount] = useState(1);
@@ -37,10 +38,16 @@ const BuyNow = ({ navigation }) => {
    const booking = () => {
       setLoading(true);
       setTimeout(() => {
-         navigation.navigate('BookingDone', { selectedItem: selectedItem, type: 'buy' });
+         type === 'buy'
+            ? navigation.navigate('BookingDone', { selectedItem: selectedItem, type: 'buy' })
+            : navigation.navigate('BookingDone', { selectedItem: selectedItem, type: 'gift', name: name })
          setLoading(false);
-      }, 1000);
-   }
+      }, 500);
+   };
+
+   // handle input
+   const [name, setName] = useState('');
+   const textChange = (text: string) => setName(text);
    return (
       <SafeAreaView style={styles.safeView}>
          <LinearGradient
@@ -54,7 +61,10 @@ const BuyNow = ({ navigation }) => {
                   <AntDesign name="arrowleft" size={25} color="black" />
                </TouchableOpacity>
                <TouchableOpacity>
-                  <Text style={{ fontWeight: 'bold', color: 'black' }}>Thanh toán</Text>
+                  {type === 'buy'
+                     ? <Text style={{ fontWeight: 'bold', color: 'black' }}>Thanh toán</Text>
+                     : <Text style={{ fontWeight: 'bold', color: 'black' }}>Tặng quà</Text>
+                  }
                </TouchableOpacity>
                <TouchableOpacity>
                   <Entypo name="menu" size={25} color="black" />
@@ -100,8 +110,8 @@ const BuyNow = ({ navigation }) => {
 
                <View style={styles.container}>
                   <View style={styles.addressContainer}>
-                     <Text style={[styles.voucherText, { color: theme.black }]}>Họ và tên</Text>
-                     <TextInput style={styles.textInput} />
+                     <Text style={[styles.voucherText, { color: theme.black }]}>Họ và tên người nhận</Text>
+                     <TextInput style={styles.textInput} onChangeText={textChange} />
                   </View>
                   <View style={styles.addressContainer}>
                      <Text style={[styles.voucherText, { color: theme.black }]}>Địa chỉ nhận hàng</Text>
@@ -186,7 +196,10 @@ const BuyNow = ({ navigation }) => {
                            <Text style={[styles.price, { color: theme.white }]}>{totalPrice || 0} VND</Text>
                         </View>
                         <TouchableOpacity style={styles.buyBtn} onPress={booking}>
-                           <Text style={styles.buyText}>Đặt hàng</Text>
+                           {type === 'buy'
+                              ? <Text style={styles.buyText}>Đặt hàng</Text>
+                              : <Text style={styles.buyText}>Tặng quà</Text>
+                           }
                         </TouchableOpacity>
                      </>
                   )
