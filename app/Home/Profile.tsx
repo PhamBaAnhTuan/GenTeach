@@ -68,7 +68,7 @@ const Profile = ({ navigation }) => {
 					<View style={styles.profileImgContainer}>
 						<Image
 							style={styles.profileImg}
-							source={require("../../assets/background/Logo.jpg")}
+							source={require("../../assets/background/Logo.png")}
 							resizeMode="center"
 						/>
 

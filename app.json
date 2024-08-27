@@ -4,7 +4,7 @@
     "slug": "GenTeach",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/background/Logo.jpg",
+    "icon": "./assets/background/Logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -16,12 +16,12 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 1,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/background/logoGenTeach2.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.GenTeach"
+      "package": "com.gdgt.GenTeach"
     },
     "web": {
       "bundler": "metro",

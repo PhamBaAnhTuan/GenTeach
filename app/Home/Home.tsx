@@ -92,7 +92,7 @@ const Home = ({ navigation }) => {
         <View style={styles.in4Wrap}>
           <View style={styles.avtWrap}>
             <TouchableOpacity>
-              <Image style={styles.avt} source={require('../../assets/background/Logo.jpg')} resizeMode="cover" />
+              <Image style={styles.avt} source={require('../../assets/background/Logo.png')} resizeMode="cover" />
             </TouchableOpacity>
 
             <TouchableOpacity>
@@ -118,7 +118,7 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Image source={require('../../assets/background/Logo.jpg')} resizeMode="center" style={styles.musicImg} />
+          <Image source={require('../../assets/background/Logo.png')} resizeMode="center" style={styles.musicImg} />
         </TouchableOpacity>
       </View>
     </View>

@@ -21,7 +21,7 @@ const Information = () => {
             <View style={[styles.container, { backgroundColor: theme.white }]}>
                <Text style={[styles.title, { color: theme.text }]}>Người xây dựng khóa học</Text>
                <View style={styles.in4Container}>
-                  <Image style={styles.authorImg} source={require('../../../assets/background/Logo.jpg')} resizeMode='cover' />
+                  <Image style={styles.authorImg} source={require('../../../assets/background/Logo.png')} resizeMode='cover' />
                   <View style={styles.authorInfo}>
                      <Text style={[styles.authorName, { color: theme.text }]}>GenTeach</Text>
                      <Text style={[styles.role, { color: theme.text }]}>Giảng viên ngành y Đại học Đông Á</Text>

@@ -174,26 +174,6 @@ const SignUp = ({ navigation }) => {
                }
             </View>
 
-            <View style={styles.orContainer}>
-               <View style={{ height: 0.5, width: '35%', backgroundColor: theme.text }}></View>
-               <Text style={{ color: theme.text }}>Hoặc</Text>
-               <View style={{ height: 0.5, width: '35%', backgroundColor: theme.text }}></View>
-            </View>
-
-            <View style={styles.otherMethod}>
-               <TouchableOpacity style={[styles.fbBtn, { borderColor: theme.text }]}>
-                  <Ionicons name="logo-facebook" size={27} color="blue" />
-
-                  <Text style={{ fontSize: 12, fontWeight: 'bold', paddingLeft: 10, color: theme.text }}>Facebook</Text>
-               </TouchableOpacity>
-
-               <TouchableOpacity style={[styles.fbBtn, { borderColor: theme.text }]}>
-                  {/* <Ionicons name="logo-google" size={24} color="black" /> */}
-                  <Image source={require('../assets/icons/google.png')} style={{ height: 24, width: 23 }} />
-                  <Text style={{ fontSize: 12, fontWeight: 'bold', paddingLeft: 10, color: theme.text }}>Google</Text>
-               </TouchableOpacity>
-            </View>
-
             <View style={styles.signUpText}>
                <Text style={{ fontWeight: 'bold', color: theme.text }}>Đã có tài khoản? </Text>
                <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
